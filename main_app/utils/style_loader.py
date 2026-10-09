@@ -26,7 +26,21 @@ class StyleLoader:
         
         current_dir = os.path.dirname(os.path.abspath(__file__))
         project_root = os.path.dirname(os.path.dirname(current_dir))
+
+        normalized_name = (theme_name or "dark").lower()
+        if normalized_name.endswith(".qss"):
+            theme_file = normalized_name
+        elif normalized_name.endswith("_theme"):
+            theme_file = f"{normalized_name}.qss"
+        else:
+            theme_file = f"{normalized_name}_theme.qss"
+
         theme_path = os.path.join(project_root, "resources", "styles", theme_file)
+        if not os.path.exists(theme_path):
+            alt_path = os.path.join(project_root, "resources", "styles", f"{normalized_name}.qss")
+            if os.path.exists(alt_path):
+                theme_path = alt_path
+
         
         try:
             with open(theme_path, 'r', encoding='utf-8') as f:
