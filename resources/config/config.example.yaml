@@ -1,0 +1,56 @@
+# ==============================================================================
+# Face Recognition System - Configuration Template
+# ==============================================================================
+
+# Camera Source Configuration
+camera:
+  source_type: local              # Options: "local" (USB/Built-in webcam) or "rtmp" (RTSP/RTMP stream)
+  camera_index: 0                 # Device index for local camera (0 is default webcam)
+  fps: 30                         # Target capture frames per second
+  resolution:                     # Camera resolution [width, height]
+    - 1280
+    - 720
+  stream_url: ""                  # Example: "rtsp://username:password@192.168.1.100:554/live"
+
+# Embedding Database Configuration
+embedding_database:
+  type: simple
+  storage_path: resources/data/identities.json
+
+# Recognition History Logging
+history:
+  storage_path: resources/face_history
+  db_path: resources/face_history/history.json
+  max_entries: 1000
+
+# Deep Learning Models Configuration
+models:
+  # Face Detection using YOLOv8
+  face_detection:
+    name: yolov8m-face
+    weight_path: resources/weights/yolov8m-face-lindevs.pt
+    detection_confidence: 0.60
+
+  # Face Tracking using ByteTrack / BoT-SORT
+  face_tracking:
+    enable: true
+    tracker: bytetrack.yaml
+    imgsz: 320
+    persist: true
+
+  # Face Recognition & Embedding Feature Extractor (ArcFace)
+  face_recognition:
+    name: arcface
+    weight_path: resources/weights/w600k_r50.onnx
+    recognition_threshold: 0.50
+
+# Runtime Environment
+runtime:
+  device: cuda                    # Options: "cuda" (NVIDIA GPU) or "cpu"
+  num_threads: 6                  # Thread pool size
+  log_level: INFO                 # DEBUG, INFO, WARNING, ERROR
+  log_path: logs/app.log
+
+# User Interface
+ui:
+  theme: dark                     # Options: "dark" or "light"

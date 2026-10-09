@@ -1,0 +1,36 @@
+camera:
+  camera_index: 0
+  fps: 30
+  resolution:
+  - 1280
+  - 720
+  source_type: local
+  stream_url: ''
+embedding_database:
+  storage_path: resources/data/identities.json
+  type: simple
+history:
+  db_path: resources/face_history/history.json
+  max_entries: 1000
+  storage_path: resources/face_history
+models:
+  face_detection:
+    detection_confidence: 0.6
+    name: yolov8m-face
+    weight_path: resources/weights/yolov8m-face-lindevs.pt
+  face_recognition:
+    name: arcface
+    recognition_threshold: 0.5
+    weight_path: resources/weights/w600k_r50.onnx
+  face_tracking:
+    enable: true
+    imgsz: 320
+    persist: true
+    tracker: bytetrack.yaml
+runtime:
+  device: cuda
+  log_level: INFO
+  log_path: logs/app.log
+  num_threads: 6
+ui:
+  theme: dark

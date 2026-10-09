@@ -1,0 +1,26 @@
+# ==============================================================================
+# Face Recognition System - Requirements
+# ==============================================================================
+
+# Core & Computer Vision
+opencv-python>=4.8.0
+numpy>=1.24.0,<2.0.0
+Pillow>=10.0.0
+scikit-image>=0.21.0
+PyYAML>=6.0
+
+# Deep Learning Framework
+torch>=2.0.0
+torchvision>=0.15.0
+
+# Face Detection & Tracking
+ultralytics>=8.0.0
+
+# Face Recognition & Embeddings
+insightface>=0.7.3
+onnxruntime>=1.15.0
+facenet-pytorch>=2.5.0
+face-alignment>=1.3.5
+
+# GUI Framework
+PyQt5>=5.15.0

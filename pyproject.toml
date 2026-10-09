@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "face-recognition-app"
+version = "3.0.0"
+authors = [
+  { name = "tuanhm2112", email = "tuanhm211224@gmail.com" }
+]
+description = "Real-time Multi-threaded Face Detection, Tracking, and Recognition System using YOLOv8, ByteTrack, and ArcFace."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+keywords = ["face-recognition", "yolov8", "arcface", "deep-learning", "pyqt5", "bytetrack", "computer-vision"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Image Recognition",
+]
+dependencies = [
+    "opencv-python>=4.8.0",
+    "numpy>=1.24.0,<2.0.0",
+    "torch>=2.0.0",
+    "torchvision>=0.15.0",
+    "ultralytics>=8.0.0",
+    "insightface>=0.7.3",
+    "onnxruntime>=1.15.0",
+    "PyQt5>=5.15.0",
+    "PyYAML>=6.0",
+    "Pillow>=10.0.0",
+    "scikit-image>=0.21.0"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/tuanhm2112"
+"Repository" = "https://github.com/tuanhm2112/face-recognition-system"
+"Bug Tracker" = "https://github.com/tuanhm2112/face-recognition-system/issues"

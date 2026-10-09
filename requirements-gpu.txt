@@ -1,0 +1,10 @@
+# ==============================================================================
+# GPU Acceleration Requirements (CUDA 11.8 / 12.1+)
+# ==============================================================================
+# Install PyTorch with CUDA first:
+# pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+
+-r requirements.txt
+
+# Replace standard onnxruntime with GPU version:
+onnxruntime-gpu>=1.15.0

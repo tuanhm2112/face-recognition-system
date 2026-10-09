@@ -1,0 +1,98 @@
+# ==============================================================================
+# Git Ignore Rules for Face Recognition Project
+# Author: tuanhm2112
+# ==============================================================================
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# C extensions
+*.obj
+*.o
+*.pyd
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environments
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE & Editor Settings
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+*.swp
+*.swo
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+Desktop.ini
+ehthumbs.db
+
+# Environment & Secrets
+.env
+.env.local
+*.pem
+*.key
+
+# Application Logs (Large file exclusion)
+logs/*
+!logs/.gitkeep
+*.log
+
+# Deep Learning Model Weights (>100MB exceeds GitHub hard limit)
+resources/weights/*.pt
+resources/weights/*.pth
+resources/weights/*.onnx
+resources/weights/*.bin
+resources/weights/*.engine
+resources/weights/*.tflite
+!resources/weights/.gitkeep
+!resources/weights/README.md
+
+# YOLO Artifacts
+runs/
+.cache/
+
+# User Data & Privacy Protection
+# (Keeps face database and captured face history private)
+resources/face_history/*
+!resources/face_history/.gitkeep
+
+resources/data/persons/*
+!resources/data/persons/.gitkeep
+
+resources/data/identities.json
+!resources/data/identities.example.json
+
+# Pytest / Coverage
+.pytest_cache/
+.coverage
+htmlcov/
