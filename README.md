@@ -1,4 +1,4 @@
-# 🎭 Real-Time Multi-Threaded Face Recognition System
+# Real-Time Multi-Threaded Face Recognition System
 
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.9%20%7C%203.10%20%7C%203.11-blue?style=for-the-badge&logo=python" alt="Python Version" />
@@ -12,7 +12,7 @@
 
 ---
 
-## 📌 Tổng quan dự án (Overview)
+## Tổng quan dự án (Overview)
 
 **Real-Time Face Recognition System** là hệ thống nhận diện khuôn mặt thời gian thực hiệu năng cao, được thiết kế theo kiến trúc **đa luồng (Multi-threaded Pipeline)** với giao diện đồ họa trực quan xây dựng trên **PyQt5**. 
 
@@ -23,23 +23,23 @@ Hệ thống tích hợp các mô hình Deep Learning tiên tiến nhất:
 
 ---
 
-## 🏗 Kiến trúc xử lý đa luồng (Pipeline Architecture)
+## Kiến trúc xử lý đa luồng (Pipeline Architecture)
 
 Hệ thống tách biệt hoàn toàn các tác vụ vào các worker thread độc lập (`QThread`) giao tiếp qua hàng đợi `queue.Queue` với cơ chế điều tiết bộ đệm (Backpressure handling) nhằm duy trì FPS ổn định và tránh giật lag giao diện:
 
 ```mermaid
 flowchart LR
-    A["📹 Camera Thread<br/>(Webcam / RTSP)"] -->|Frame Queue| B["🔍 Detection Thread<br/>(YOLOv8-Face)"]
-    B -->|Detection Queue| C["🎯 Tracking Thread<br/>(ByteTrack)"]
-    C -->|Embedding Queue| D["⚡ Embedding Thread<br/>(ArcFace ONNX)"]
-    D -->|Recognition Queue| E["👤 Recognition Thread<br/>(Vector Search)"]
-    E -->|PyQt Signal| F["🖥 Display Handler & GUI<br/>(PyQt5 Main Window)"]
-    E -.->|Save Event| G["💾 History Service<br/>(Storage & Logs)"]
+    A["📹 Camera Thread<br/>(Webcam / RTSP)"] -->|Frame Queue| B["Detection Thread<br/>(YOLOv8-Face)"]
+    B -->|Detection Queue| C["Tracking Thread<br/>(ByteTrack)"]
+    C -->|Embedding Queue| D["Embedding Thread<br/>(ArcFace ONNX)"]
+    D -->|Recognition Queue| E["Recognition Thread<br/>(Vector Search)"]
+    E -->|PyQt Signal| F["Display Handler & GUI<br/>(PyQt5 Main Window)"]
+    E -.->|Save Event| G["History Service<br/>(Storage & Logs)"]
 ```
 
 ---
 
-## ✨ Tính năng nổi bật (Key Features)
+## Tính năng nổi bật (Key Features)
 
 - [x] **Nguồn camera linh hoạt:** Hỗ trợ cả Webcam máy tính (USB/Built-in) và luồng camera IP (RTSP/RTMP).
 - [x] **Nhận diện khuôn mặt theo thời gian thực:** Pipeline 5 giai đoạn chạy song song, tận dụng tối đa GPU CUDA.
@@ -51,7 +51,7 @@ flowchart LR
 
 ---
 
-## 📁 Cấu trúc thư mục dự án (Project Structure)
+## Cấu trúc thư mục dự án (Project Structure)
 
 ```text
 Face_v3_0410/
@@ -111,7 +111,7 @@ Face_v3_0410/
 
 ---
 
-## 🚀 Hướng dẫn cài đặt & Chạy dự án (Getting Started)
+## Hướng dẫn cài đặt & Chạy dự án (Getting Started)
 
 ### 1. Yêu cầu hệ thống (System Prerequisites)
 - **Hệ điều hành:** Windows 10/11, Ubuntu 20.04+, hoặc macOS.
@@ -156,7 +156,7 @@ pip install onnxruntime
 
 ---
 
-## 📦 Thiết lập trọng số mô hình (Model Weights Setup)
+## Thiết lập trọng số mô hình (Model Weights Setup)
 
 Vì kích thước file trọng số vượt quá giới hạn **100 MB** của GitHub, file `.pt` và `.onnx` không lưu trữ trực tiếp trên Git repo. Bạn có thể kiểm tra và tải về tự động:
 
@@ -173,7 +173,7 @@ Hoặc tải thủ công theo bảng sau và đặt vào thư mục `resources/w
 
 ---
 
-## 🖥 Hướng dẫn sử dụng (Usage)
+## Hướng dẫn sử dụng (Usage)
 
 ### 1. Khởi chạy giao diện chính
 ```bash
@@ -196,7 +196,7 @@ python -m unittest discover -s tests
 
 ---
 
-## ⚙️ Cấu hình hệ thống (Configuration)
+## Cấu hình hệ thống (Configuration)
 
 Tất cả thông số vận hành được quản lý tập trung trong file [resources/config/config.yaml](resources/config/config.yaml):
 
@@ -225,42 +225,14 @@ ui:
 
 ---
 
-## 📤 Hướng dẫn đẩy dự án lên GitHub của tuanhm2112
 
-Thực hiện các bước sau trong terminal dự án để kết nối và đẩy mã nguồn lên GitHub của bạn:
-
-```bash
-# 1. Khởi tạo Git repository (nếu chưa có)
-git init -b main
-
-# 2. Cấu hình định danh tác giả (tuanhm2112)
-git config user.name "tuanhm2112"
-git config user.email "tuanhm211224@gmail.com"
-
-# 3. Thêm tất cả tệp tin đã được chuẩn hóa vào stage
-git add .
-
-# 4. Tạo commit đầu tiên
-git commit -m "feat: initial commit - standardize project structure for Face Recognition System"
-
-# 5. Tạo repository mới trên https://github.com/new với tên: face-recognition-system
-
-# 6. Liên kết remote repository với tài khoản của bạn
-git remote add origin https://github.com/tuanhm2112/face-recognition-system.git
-
-# 7. Đẩy mã nguồn lên nhánh chính
-git push -u origin main
-```
-
----
-
-## 📄 Bản quyền (License)
+## Bản quyền (License)
 
 Dự án được phân phối dưới giấy phép **MIT License**. Xem chi tiết tại tệp [LICENSE](LICENSE).
 
 ---
 
-## 👨‍💻 Tác giả (Author)
+## Tác giả (Author)
 
 - **GitHub:** [@tuanhm2112](https://github.com/tuanhm2112)
 - **Email:** tuanhm211224@gmail.com
