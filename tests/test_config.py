@@ -1,6 +1,10 @@
 import unittest
 import os
-import yaml
+try:
+    import yaml
+    HAS_YAML = True
+except ImportError:
+    HAS_YAML = False
 
 
 class TestConfigStructure(unittest.TestCase):
@@ -12,6 +16,7 @@ class TestConfigStructure(unittest.TestCase):
     def test_example_config_exists(self):
         self.assertTrue(os.path.exists(self.example_config_path), "config.example.yaml should exist")
 
+    @unittest.skipUnless(HAS_YAML, "PyYAML is not installed")
     def test_example_config_valid_yaml(self):
         with open(self.example_config_path, "r", encoding="utf-8") as f:
             data = yaml.safe_load(f)
